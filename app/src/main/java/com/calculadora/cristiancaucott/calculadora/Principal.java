@@ -11,10 +11,11 @@ import android.widget.EditText;
 
 public class Principal extends ActionBarActivity implements View.OnClickListener{
 
-    Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,bp,bmul,bdiv,bsum,bres,beq;
-    EditText res;
-    Double num1, num2, resfinal;
-    int op;
+    private Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,bp,bmul,bdiv,bsum,bres,beq, bdel;
+    private EditText res;
+    private Double num1 = 0.0, num2 = 0.0, num, resfinal;
+    private Boolean aux = true;
+    private int op = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class Principal extends ActionBarActivity implements View.OnClickListener
         bsum = (Button) findViewById(R.id.bsum);
         bres = (Button) findViewById(R.id.bres);
         beq = (Button) findViewById(R.id.beq);
+        bdel = (Button)findViewById(R.id.bdel);
         res = (EditText)findViewById(R.id.res);
 
         b1.setOnClickListener(this);
@@ -55,6 +57,7 @@ public class Principal extends ActionBarActivity implements View.OnClickListener
         bsum.setOnClickListener(this);
         bres.setOnClickListener(this);
         beq.setOnClickListener(this);
+        bdel.setOnClickListener(this);
 
     }
 
@@ -80,61 +83,65 @@ public class Principal extends ActionBarActivity implements View.OnClickListener
 
     @Override
     public void onClick(View arg) {
-
-        if(arg == b0 || arg == b1 || arg == b2 || arg == b3 || arg == b4 || arg == b5 || arg == b6 || arg == b7 || arg == b8 || arg == b9 || arg == bp){
-            Button b = (Button) arg;
-            String text = b.getText().toString();
-            res.setText(res.getText().toString() + text);
-        }else if(arg == bsum){
-            num1 = Double.parseDouble(res.getText().toString());
-            res.setText("");
-            op = 1;
-        }else if(arg == bres){
-            num1 = Double.parseDouble(res.getText().toString());
-            res.setText("");
-            op = 2;
-        }else if(arg == bmul){
-            num1 = Double.parseDouble(res.getText().toString());
-            res.setText("");
-            op = 3;
-        }else if(arg == bdiv){
-            num1 = Double.parseDouble(res.getText().toString());
-            res.setText("");
-            op = 4;
-        }
-
-        if(arg == beq){
-            String aux = res.getText().toString();
-            if(!aux.isEmpty()){
-                num2 = Double.parseDouble(aux);
-                switch (op){
-                    case 1:
-                        resfinal = num1 + num2;
-                        break;
-
-                    case 2:
-                        resfinal = num1 - num2;
-                        break;
-
-                    case 3:
-                        resfinal = num1 * num2;
-                        break;
-
-                    case 4:
-                        resfinal = num1 / num2;
-                        break;
-
-                    default:
-                        break;
+        Button b = (Button) arg;
+        switch (arg.getId()){
+            case R.id.bsum: // +
+                op = 1;
+                num1 = Double.parseDouble(res.getText().toString());
+                aux = true;
+                break;
+            case R.id.bres: // -
+                op = 2;
+                num1 = Double.parseDouble(res.getText().toString());
+                aux = true;
+                break;
+            case R.id.bdiv: // /
+                op = 3;
+                num1 = Double.parseDouble(res.getText().toString());
+                aux = true;
+                break;
+            case R.id.bmul: // *
+                op = 4;
+                num1 = Double.parseDouble(res.getText().toString());
+                aux = true;
+                break;
+            case R.id.bdel: // borrar
+                System.out.println("Aqui");
+                res.setText("0");
+                aux = true;
+                break;
+            case R.id.beq:  // =
+                if(op != -1){
+                    num2 = Double.parseDouble(res.getText().toString());
+                    switch (op){
+                        case 1:
+                            resfinal = num1 + num2;
+                            break;
+                        case 2:
+                            resfinal = num1 - num2;
+                            break;
+                        case 3:
+                            resfinal = num1 / num2;
+                            break;
+                        case 4:
+                            resfinal = num1 * num2;
+                            break;
+                        default:
+                            break;
+                    }
+                    op = -1;
+                    aux = true;
+                    res.setText(resfinal.toString());
                 }
-                res.setText(resfinal.toString());
-                num1 = resfinal;
-                num2 = 0.0;
-                op = 0;
-            }
+                break;
+            default:    // Numeros
+                if(aux){
+                    res.setText(b.getText().toString());
+                    aux = false;
+                }else{
+                     res.setText(res.getText().toString() + b.getText().toString());
+                }
+                break;
         }
-
-
-
     }
 }

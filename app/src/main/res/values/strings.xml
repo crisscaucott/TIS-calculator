@@ -20,5 +20,6 @@
     <string name="bsum">+</string>
     <string name="bres">-</string>
     <string name="beq">=</string>
+    <string name="bc">c</string>
 
 </resources>

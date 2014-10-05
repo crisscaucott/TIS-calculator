@@ -2,11 +2,13 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main">
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/b0"
         android:id="@+id/res" />
 
     <LinearLayout
@@ -14,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:id="@+id/buttons">
+        android:id="@+id/buttons"
+        android:gravity="center_vertical">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -24,30 +27,38 @@
             android:weightSum="1">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="@string/b7"
                 android:id="@+id/b7"
                 android:layout_weight="0.10" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="@string/b8"
                 android:id="@+id/b8"
                 android:layout_weight="0.10" />
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="@string/b9"
                 android:id="@+id/b9"
                 android:layout_weight="0.10" />
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="@string/bdiv"
                 android:id="@+id/bdiv"
                 android:layout_weight="0.10" />
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="@string/bc"
+                android:id="@+id/bdel"
+                android:layout_weight="0.10"
+                />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -57,26 +68,26 @@
             android:weightSum="1">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="@string/b4"
                 android:id="@+id/b4"
                 android:layout_weight="0.10" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="@string/b5"
                 android:id="@+id/b5"
                 android:layout_weight="0.10" />
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="@string/b6"
                 android:id="@+id/b6"
                 android:layout_weight="0.10" />
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="@string/bmul"
                 android:id="@+id/bmul"
